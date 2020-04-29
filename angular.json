@@ -120,6 +120,46 @@
           }
         }
       }
+    },
+    "NgTestPackage": {
+      "projectType": "library",
+      "root": "projects/ng-test-package",
+      "sourceRoot": "projects/ng-test-package/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ng-test-package/tsconfig.lib.json",
+            "project": "projects/ng-test-package/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ng-test-package/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ng-test-package/src/test.ts",
+            "tsConfig": "projects/ng-test-package/tsconfig.spec.json",
+            "karmaConfig": "projects/ng-test-package/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ng-test-package/tsconfig.lib.json",
+              "projects/ng-test-package/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "npm-module-practice",
